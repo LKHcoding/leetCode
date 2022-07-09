@@ -24,7 +24,6 @@ var duplicateZeros = function (arr) {
     }
     arr[idx] = tmpArr[idx];
   }
-  console.log(arr);
 };
 
 duplicateZeros([1, 0, 2, 3, 0, 4, 5, 0]);
