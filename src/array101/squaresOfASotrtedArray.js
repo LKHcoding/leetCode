@@ -33,22 +33,3 @@ var sortedSquares = function (nums) {
   return resultArr;
 };
 console.log(sortedSquares([-4, -1, 0, 3, 10]));
-
-// 아래는 속도 빠른 로직
-// var sortedSquares = function (nums) {
-//   var left = 0;
-//   var right = nums.length - 1;
-//   var arr = new Array(right + 1);
-//   for (let i = nums.length - 1; i >= 0; i--) {
-//     var leftCursor = nums[left] ** 2;
-//     var rightCursor = nums[right] ** 2;
-//     if (leftCursor >= rightCursor) {
-//       arr[i] = leftCursor;
-//       left++;
-//     } else {
-//       arr[i] = rightCursor;
-//       right--;
-//     }
-//   }
-//   return arr;
-// };
