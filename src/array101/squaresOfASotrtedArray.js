@@ -8,12 +8,31 @@
  * @return {number[]}
  */
 var sortedSquares = function (nums) {
-  return nums
-    .map((item) => {
-      return item * item;
-    })
-    .sort((a, b) => a - b);
+  // return nums
+  //   .map((item) => {
+  //     return item * item;
+  //   })
+  //   .sort((a, b) => a - b);
+
+  let leftIdx = 0;
+  let rightIdx = nums.length - 1;
+  let resultArr = new Array(rightIdx + 1);
+
+  for (let idx = nums.length - 1; idx >= 0; idx--) {
+    let leftCursor = nums[leftIdx] ** 2;
+    let rightCursor = nums[rightIdx] ** 2;
+
+    if (leftCursor >= rightCursor) {
+      resultArr[idx] = leftCursor;
+      leftIdx++;
+    } else {
+      resultArr[idx] = rightCursor;
+      rightIdx--;
+    }
+  }
+  return resultArr;
 };
+console.log(sortedSquares([-4, -1, 0, 3, 10]));
 
 // 아래는 속도 빠른 로직
 // var sortedSquares = function (nums) {
@@ -33,5 +52,3 @@ var sortedSquares = function (nums) {
 //   }
 //   return arr;
 // };
-
-console.log(sortedSquares([-4, -1, 0, 3, 10]));
