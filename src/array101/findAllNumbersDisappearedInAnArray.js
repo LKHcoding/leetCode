@@ -5,20 +5,24 @@
  * @return {number[]}
  */
 var findDisappearedNumbers = function (nums) {
-  nums.sort((a, b) => a - b);
 
-  // let missedNumbers = [];
-  console.log(nums);
-  let count = 0;
+  let set = new Set();
+
   for (let idx = 0; idx < nums.length; idx++) {
-    if (!nums.includes(idx + 1)) {
-      nums[count] = idx + 1;
-      count++;
+    set.add(nums[idx]);
+  }
+
+  const result = [];
+
+  for (let idx = 0; idx < nums.length; idx++) {
+    if (!set.has(idx+1)) {
+      result.push(idx+1);
     }
   }
 
-  nums.splice(count, nums.length);
-  return nums;
+  return result;
+
+  // 곱하기 -1을 해서 양수만 찾아서 result만들어내는 방식으로 풀어보기
 };
 
 findDisappearedNumbers([5, 4, 6, 7, 9, 3, 10, 9, 5, 6]);
