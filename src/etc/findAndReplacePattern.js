@@ -10,6 +10,7 @@ var findAndReplacePattern = function (words, pattern) {
 
   words.forEach((item) => {
     let mapper = new Map();
+    let values = new Set();
     for (let idx = 0; idx < item.length; idx++) {
       if (!pattern[idx]) break;
 
@@ -18,11 +19,11 @@ var findAndReplacePattern = function (words, pattern) {
           break;
         }
       } else {
-        const values = mapper.values();
-        if (Array.from(values).includes(pattern[idx])) {
+        if (values.has(pattern[idx])) {
           break;
         }
         mapper.set(item[idx], pattern[idx]);
+        values.add(pattern[idx]);
       }
       if (item.length - 1 === idx) {
         result.push(item);
