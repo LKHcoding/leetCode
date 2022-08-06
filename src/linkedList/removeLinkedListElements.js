@@ -13,13 +13,17 @@
  * @return {ListNode}
  */
 var removeElements = function (head, val) {
-  let cursor = head;
-  while (cursor) {
-    if (cursor?.next?.val === val) {
-      cursor.next = cursor?.next?.next ?? null;
+  let tmp = { next: head };
+  let currentCursor = tmp;
+
+  while (currentCursor) {
+    if (currentCursor?.next?.val === val) {
+      currentCursor.next = currentCursor?.next?.next ?? null;
+    } else {
+      currentCursor = currentCursor.next;
     }
   }
-  return head;
+  return tmp.next;
 };
 
 function ListNode(val, next) {
@@ -27,10 +31,12 @@ function ListNode(val, next) {
   this.next = next === undefined ? null : next;
 }
 
-let node5 = new ListNode(5, null);
-let node4 = new ListNode(4, node5);
-let node3 = new ListNode(3, node4);
-let node2 = new ListNode(2, node3);
+let node7 = new ListNode(6, null);
+let node6 = new ListNode(5, node7);
+let node5 = new ListNode(4, node6);
+let node4 = new ListNode(3, node5);
+let node3 = new ListNode(6, node4);
+let node2 = new ListNode(2, null);
 let node1 = new ListNode(1, node2);
 
-removeElements(node1, 6);
+removeElements(node1, 2);
